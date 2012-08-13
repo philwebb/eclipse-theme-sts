@@ -1,0 +1,99 @@
+.MTrimmedWindow.topLevel { 
+    margin-top: 5px;
+    margin-bottom: 2px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.MPartStack {
+    swt-tab-renderer: url('bundleclass://themeplus/org.eclipse.e4.ui.workbench.renderers.swt.ExtendedCTabRendering');
+    swt-unselected-tabs-color: #FFFFFF #FFFFFF #FFFFFF 100% 100%;
+    swt-outer-keyline-color: #FFFFFF;
+	swt-inner-keyline-color: #FFFFFF;
+	padding: 0px 9px 10px;
+	swt-tab-outline: #B6BCCC;
+	swt-shadow-visible: true;
+	swt-mru-visible: false;
+}
+
+.MPartStack.active {
+	swt-inner-keyline-color: #FFFFFF;
+	swt-tab-outline: #B6BCCC;
+	swt-shadow-visible: true;
+}
+
+#PerspectiveSwitcher {
+	eclipse-perspective-keyline-color: #AAB0BF #AAB0BF;
+}
+
+.MToolControl.TrimStack {
+	frame-image:  url(./winXPTSFrame.png);
+	handle-image:  url(./winXPHandle.png);
+	frame-cuts: 5px 1px 5px 16px;
+}
+
+.MTrimmedWindow { 
+    background-color: #E8E8E8;
+}
+
+.MPartStack {
+	swt-unselected-tabs-color: #E8E8E8 #FFFFFF 100%;
+	font-size: 12;
+	swt-simple: false;
+	swt-mru-visible: false;
+}
+
+.MTrimBar {
+    background-color: #E8E8E8;
+}
+
+.MTrimBar#org-eclipse-ui-main-toolbar {
+    background-color: #F0F0F0 #E8E8E8 100%;
+}
+
+.MToolControl.TrimStack {
+	frame-image:  url(./macTSFrame.png);
+	handle-image:  url(./macHandle.png);
+}
+
+.MPartStack.active {
+	swt-unselected-tabs-color: #F6F6F6 #D3D3D3 #D1D1D1 #D1D1D1 #D6D6D6 #D6D6D6 #FFFFFF 20% 45% 60% 70% 100% 100%;
+    swt-outer-keyline-color: #C4C5C1;
+}
+
+#PerspectiveSwitcher {
+	eclipse-perspective-keyline-color: #ECE9D8 #E8E8E8;
+	background-color: #F0F0F0 #E8E8E8 100%;
+}
+
+#org-eclipse-ui-editorss {
+   swt-tab-renderer: url('bundleclass://themeplus/org.eclipse.e4.ui.workbench.renderers.swt.ExtendedCTabRendering');
+   swt-unselected-tabs-color: #D6DDE5 #D6DDE5 #D6DDE5 100% 100%;
+   swt-outer-keyline-color: #D6DDE5;
+   swt-inner-keyline-color: #D6DDE5;
+   swt-tab-outline: #D6DDE5;
+   color: #D6DDE5;
+   swt-tab-height: 8px;
+   padding: 0px 5px 7px;
+}
+
+CTabFolder.MArea .MPartStack, CTabFolder.MArea .MPartStack.active {
+   swt-shadow-visible: false;
+}
+
+CTabFolder Canvas {
+  background-color: #FFFFFF;
+}
+
+#org-eclipse-e4-ui-compatibility-editor Composite Composite Composite Composite Composite Canvas Canvas,
+#org-eclipse-e4-ui-compatibility-editor Composite Composite Composite Composite Composite Canvas Canvas {
+	background-color: #F0F0F0;
+}
+
+#org-eclipse-jdt-ui-SourceView Composite StyledText {
+	background-color: #FFFFFF;
+}
+
+#org-eclipse-jdt-ui-JavadocView Composite Browser {
+	background-color: #FFFFFF;
+}
