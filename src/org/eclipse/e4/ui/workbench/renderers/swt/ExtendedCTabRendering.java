@@ -129,6 +129,10 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
                             + (shadowEnabled ? BOTTOM_DROP_WIDTH : 0);
                     }
                 }
+                y += 1;
+                x += (cornerSize / 2) - 1;
+                height -= (cornerSize / 2) + 1;
+                width -= cornerSize - 2;
                 break;
             case PART_HEADER:
                 x = x - (INNER_KEYLINE + OUTER_KEYLINE) - sideDropWidth;
@@ -245,10 +249,12 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
         index += ltt.length;
 
         int[] lbb = drawCircle(circX + 1, circY + height - (radius * 2) - 2, radius, LEFT_BOTTOM);
+        lbb = new int[] { bounds.x + (delta / 2) + 1, bounds.y + height - 2 };
         System.arraycopy(lbb, 0, points, index, lbb.length);
         index += lbb.length;
 
         int[] rb = drawCircle(circX + width - (radius * 2) - 2, circY + height - (radius * 2) - 2, radius, RIGHT_BOTTOM);
+        rb = new int[] { bounds.x + (delta / 2) + width - 2, bounds.y + height - 2 };
         System.arraycopy(rb, 0, points, index, rb.length);
         index += rb.length;
 
@@ -288,10 +294,12 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
         index += ltt.length;
 
         int[] lbb = drawCircle(circX, circY + height - (radius * 2), radius, LEFT_BOTTOM);
+        lbb = new int[] { bounds.x + (delta / 2), bounds.y + height };
         System.arraycopy(lbb, 0, points, index, lbb.length);
         index += lbb.length;
 
         int[] rb = drawCircle(circX + width - (radius * 2), circY + height - (radius * 2), radius, RIGHT_BOTTOM);
+        rb = new int[] { bounds.x + (delta / 2) + width, bounds.y + height };
         System.arraycopy(rb, 0, points, index, rb.length);
         index += rb.length;
 
