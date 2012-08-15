@@ -537,10 +537,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
             tempBorder.dispose();
             if (active) {
                 gc.drawPolyline(tmpPoints);
-            } else {
-                gc.drawLine(inactive[0], inactive[1], inactive[2], inactive[3]);
-                gc.drawLine(inactive[4], inactive[5], inactive[6], inactive[7]);
-            }
+            } 
 
             Rectangle rect = null;
             gc.setClipping(rect);
