@@ -29,9 +29,9 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
     final static int RIGHT_BOTTOM = 3;
 
     // drop shadow constants
-    final static int SIDE_DROP_WIDTH = 3;
+    final static int SIDE_DROP_WIDTH = 1;
 
-    final static int BOTTOM_DROP_WIDTH = 4;
+    final static int BOTTOM_DROP_WIDTH = 1;
 
     // keylines
     final static int OUTER_KEYLINE = 1;
@@ -41,13 +41,13 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
     final static int TOP_KEYLINE = 0;
 
     // Item Constants
-    static final int ITEM_TOP_MARGIN = 2;
+    static final int ITEM_TOP_MARGIN = 1;
 
-    static final int ITEM_BOTTOM_MARGIN = 6;
+    static final int ITEM_BOTTOM_MARGIN = 2;
 
-    static final int ITEM_LEFT_MARGIN = 4;
+    static final int ITEM_LEFT_MARGIN = 1;
 
-    static final int ITEM_RIGHT_MARGIN = 4;
+    static final int ITEM_RIGHT_MARGIN = 1;
 
     static final int INTERNAL_SPACING = 4;
 
@@ -163,6 +163,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
             gc.setAdvanced(true);
             Point result = super.computeSize(part, state, gc, wHint, hHint);
             gc.setAdvanced(false);
+            result.x += 5;
             return result;
         }
         return super.computeSize(part, state, gc, wHint, hHint);
@@ -451,6 +452,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
                 foregroundPattern.dispose();
 
         }
+        bounds.x += 5;
     }
 
     void drawUnselectedTab(int itemIndex, GC gc, Rectangle bounds, int state) {
@@ -548,6 +550,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
             // gc.setForeground(outerKeyline);
             // gc.drawPolyline(shape);
         }
+        bounds.x += 5;
     }
 
     static int[] drawCircle(int xC, int yC, int r, int circlePart) {
