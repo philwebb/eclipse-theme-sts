@@ -6,7 +6,7 @@
 }
 
 .MPartStack {
-    swt-tab-renderer: url('bundleclass://themeplus/org.eclipse.e4.ui.workbench.renderers.swt.ExtendedCTabRendering');
+    swt-tab-renderer: url('bundleclass://org.springframework.ide.eclipse.theme/org.eclipse.e4.ui.workbench.renderers.swt.ExtendedCTabRendering');
     swt-unselected-tabs-color: #FFFFFF #FFFFFF #FFFFFF 100% 100%;
     swt-outer-keyline-color: #FFFFFF;
 	swt-inner-keyline-color: #FFFFFF;
@@ -67,7 +67,7 @@
 }
 
 #org-eclipse-ui-editorss {
-   swt-tab-renderer: url('bundleclass://themeplus/org.eclipse.e4.ui.workbench.renderers.swt.ExtendedCTabRendering');
+   swt-tab-renderer: url('bundleclass://org.springframework.ide.eclipse.theme/org.eclipse.e4.ui.workbench.renderers.swt.ExtendedCTabRendering');
    swt-unselected-tabs-color: #D6DDE5 #D6DDE5 #D6DDE5 100% 100%;
    swt-outer-keyline-color: #D6DDE5;
    swt-inner-keyline-color: #D6DDE5;
