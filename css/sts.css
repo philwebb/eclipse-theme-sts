@@ -97,3 +97,12 @@ CTabFolder Canvas {
 #org-eclipse-jdt-ui-JavadocView Composite Browser {
 	background-color: #FFFFFF;
 }
+
+#org-eclipse-ui-views-ProgressView Composite ScrolledComposite Composite,
+#org-eclipse-ui-views-ProgressView Composite ScrolledComposite Composite Text {
+	background-color: #FFFFFF;
+}
+
+#org-eclipse-jdt-junit-ResultView Composite Composite CounterPanel Text {
+	background-color: #FFFFFF;
+}
