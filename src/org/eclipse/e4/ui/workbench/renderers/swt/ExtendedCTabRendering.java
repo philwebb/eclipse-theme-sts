@@ -235,7 +235,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
                         // HEADER
         Rectangle trim = computeTrim(PART_HEADER, state, 0, 0, 0, 0);
         trim.width = bounds.width - trim.width;
-        trim.height = (parent.getTabHeight() + 1 + header) - trim.height;
+        trim.height = (parent.getTabHeight() + 2 + header) - trim.height;
         trim.x = -trim.x;
         trim.y = -trim.y;
 
