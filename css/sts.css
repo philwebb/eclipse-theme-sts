@@ -1,4 +1,4 @@
-.MTrimmedWindow.topLevel { 
+.MTrimmedWindow.topLevel {
     margin-top: 5px;
     margin-bottom: 2px;
     margin-left: 2px;
@@ -6,8 +6,9 @@
 }
 
 .MPartStack {
+	font-size: 12;
     swt-tab-renderer: url('bundleclass://org.springframework.ide.eclipse.theme/org.eclipse.e4.ui.workbench.renderers.swt.ExtendedCTabRendering');
-    swt-unselected-tabs-color: #FFFFFF #FFFFFF #FFFFFF 100% 100%;
+	swt-unselected-tabs-color: #E8E8E8 #FFFFFF 100%;
     swt-outer-keyline-color: #FFFFFF;
 	swt-inner-keyline-color: #FFFFFF;
 	padding: 0px 9px 10px;
@@ -32,15 +33,8 @@
 	frame-cuts: 5px 1px 5px 16px;
 }
 
-.MTrimmedWindow { 
+.MTrimmedWindow {
     background-color: #E8E8E8;
-}
-
-.MPartStack {
-	swt-unselected-tabs-color: #E8E8E8 #FFFFFF 100%;
-	font-size: 12;
-	swt-simple: false;
-	swt-mru-visible: false;
 }
 
 .MTrimBar {
