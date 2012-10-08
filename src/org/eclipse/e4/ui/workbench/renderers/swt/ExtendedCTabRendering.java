@@ -51,8 +51,6 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
 
     static final int INTERNAL_SPACING = 4;
 
-    static final String E4_SHADOW_IMAGE = "org.eclipse.e4.renderer.shadow_image"; //$NON-NLS-1$
-
     static final String E4_TOOLBAR_ACTIVE_IMAGE = "org.eclipse.e4.renderer.toolbar_background_active_image"; //$NON-NLS-1$
 
     static final String E4_TOOLBAR_INACTIVE_IMAGE = "org.eclipse.e4.renderer.toolbar_background_inactive_image"; //$NON-NLS-1$
@@ -91,8 +89,6 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
     }
 
     protected Rectangle computeTrim(int part, int state, int x, int y, int width, int height) {
-        GC gc = new GC(parent);
-        gc.dispose();
         int borderTop = TOP_KEYLINE + OUTER_KEYLINE;
         int borderBottom = INNER_KEYLINE + OUTER_KEYLINE;
         int marginWidth = parent.marginWidth;
@@ -162,7 +158,6 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
         if (0 <= part && part < parent.getItemCount()) {
             gc.setAdvanced(true);
             Point result = super.computeSize(part, state, gc, wHint, hHint);
-            gc.setAdvanced(false);
             result.x += 5;
             return result;
         }
@@ -170,6 +165,10 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
     }
 
     protected void dispose() {
+        if (shadowImage != null && !shadowImage.isDisposed()) {
+            shadowImage.dispose();
+            shadowImage = null;
+        }
         super.dispose();
     }
 
@@ -183,9 +182,9 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
                 return;
             default:
                 if (0 <= part && part < parent.getItemCount()) {
+                	gc.setAdvanced(true);
                     if (bounds.width == 0 || bounds.height == 0)
                         return;
-                    gc.setAdvanced(true);
                     if ((state & SWT.SELECTED) != 0) {
                         drawSelectedTab(part, gc, bounds, state);
                         state &= ~SWT.BACKGROUND;
@@ -196,12 +195,12 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
                             gc.setAlpha(0x7f);
                             state &= ~SWT.BACKGROUND;
                             super.draw(part, state, bounds, gc);
+                        	gc.setAlpha(0xff);
                         } else {
                             state &= ~SWT.BACKGROUND;
                             super.draw(part, state, bounds, gc);
                         }
                     }
-                    gc.setAdvanced(false);
                     return;
                 }
         }
@@ -537,7 +536,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
             tempBorder.dispose();
             if (active) {
                 gc.drawPolyline(tmpPoints);
-            } 
+            }
 
             Rectangle rect = null;
             gc.setClipping(rect);
@@ -635,7 +634,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
 
     void drawShadow(final Display display, Rectangle bounds, GC gc) {
         if (shadowImage == null) {
-            createShadow(display, true);
+            createShadow(display);
         }
         int x = bounds.x;
         int y = bounds.y;
@@ -684,35 +683,19 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
         gc.drawImage(shadowImage, SIZE * 2, SIZE, SIZE, fillHeight - xFill, x + width - SIZE - 1, xFill + SIZE, SIZE, fillHeight - xFill);
     }
 
-    void createShadow(final Display display, boolean recreate) {
-        Object obj = display.getData(E4_SHADOW_IMAGE);
-        if (obj != null && !recreate) {
-            shadowImage = (Image) obj;
-        } else {
-            ImageData data = new ImageData(60, 60, 32, new PaletteData(0xFF0000, 0xFF00, 0xFF));
-            Image tmpImage = shadowImage = new Image(display, data);
-            GC gc = new GC(tmpImage);
-            if (shadowColor == null)
-                shadowColor = gc.getDevice().getSystemColor(SWT.COLOR_GRAY);
-            gc.setBackground(shadowColor);
-            drawTabBody(gc, new Rectangle(0, 0, 60, 60), SWT.None);
-            ImageData blured = blur(tmpImage, 5, 25);
-            shadowImage = new Image(display, blured);
-            display.setData(E4_SHADOW_IMAGE, shadowImage);
-            tmpImage.dispose();
-            display.disposeExec(new Runnable() {
-
-                public void run() {
-                    Object obj = display.getData(E4_SHADOW_IMAGE);
-                    if (obj != null) {
-                        Image tmp = (Image) obj;
-                        tmp.dispose();
-                        display.setData(E4_SHADOW_IMAGE, null);
-                    }
-                }
-            });
-        }
-    }
+	void createShadow(final Display display) {
+		ImageData data = new ImageData(60, 60, 32,
+				new PaletteData(0xFF0000, 0xFF00, 0xFF));
+		Image tmpImage = shadowImage = new Image(display, data);
+		GC gc = new GC(tmpImage);
+		if (shadowColor == null)
+			shadowColor = gc.getDevice().getSystemColor(SWT.COLOR_GRAY);
+		gc.setBackground(shadowColor);
+		drawTabBody(gc, new Rectangle(0, 0, 60, 60), SWT.None);
+		ImageData blured = blur(tmpImage, 5, 25);
+		shadowImage = new Image(display, blured);
+		tmpImage.dispose();
+	}
 
     public ImageData blur(Image src, int radius, int sigma) {
         float[] kernel = create1DKernel(radius, sigma);
@@ -851,7 +834,7 @@ public class ExtendedCTabRendering extends CTabFolderRenderer {
 
     public void setShadowColor(Color color) {
         this.shadowColor = color;
-        createShadow(parent.getDisplay(), true);
+        createShadow(parent.getDisplay());
         parent.redraw();
     }
 
